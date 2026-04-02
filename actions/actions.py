@@ -14,7 +14,7 @@ winning_comb = {
 
 def get_player_action():
     try:
-        choices = [f"{action.name} ({action.value})" for action in Action]
+        choices = [f"- {action.name}" for action in Action]
         print("Choose your action:\n")
         for choice in choices:
             print(choice)
