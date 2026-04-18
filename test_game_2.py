@@ -1,3 +1,4 @@
+from time import time, perf_counter
 import time
 from actions.actions import get_player_action, get_computer_action, winning_comb
 from player.player import Player, ComputerPlayer, do_damage
@@ -16,6 +17,7 @@ def test_game_2():
             
             do_damage(player, computer)
             time.sleep(1.5)
+            
 
             if player.current_hp <= 0:
                 print(f"{computer.name} wins the game!")
@@ -25,6 +27,7 @@ def test_game_2():
         if play_again != "yes":
             print("Thanks for playing!")
             running = False
+
 
 if __name__ == "__main__":
     test_game_2()

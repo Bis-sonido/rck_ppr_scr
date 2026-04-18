@@ -14,21 +14,19 @@ class Player():
 
     def get_hit(self, damage):
         self.current_hp -= damage
-        hp = self.show_curr_hp()
 
     def show_curr_hp(self):
         current_hp = int(self.current_hp / self.max_hp * 100)
         return current_hp
 
 class ComputerPlayer(Player):
-    def __init__(self, name, max_hp=MAX_HP, damage=DAMAGE):
-        super().__init__(name, max_hp, damage=DAMAGE, wins_in_row=0)
+    def __init__(self, name, max_hp=MAX_HP, damage=DAMAGE, wins_in_row=0):
+        super().__init__(name, max_hp=MAX_HP, damage=DAMAGE, wins_in_row=0)
         self.current_hp = max_hp
         self.action = None
     
     def get_hit(self, damage):
         self.current_hp -= damage
-        hp = self.show_curr_hp()
 
     def show_curr_hp(self):
         current_hp = int(self.current_hp / self.max_hp * 100)

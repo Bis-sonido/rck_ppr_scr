@@ -1,4 +1,4 @@
-# This file contains constants used in the game.
+#players stats
 DAMAGE = 10
 MAX_HP = 100
 

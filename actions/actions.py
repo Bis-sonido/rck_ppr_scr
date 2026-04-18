@@ -15,23 +15,27 @@ winning_comb = {
 def get_player_action():
     try:
         choices = [f"- {action.name}" for action in Action]
-        print("Choose your action:\n")
+        print("\nChoose your action:\n")
         for choice in choices:
             print(choice)
-        user_input = input("\nEnter your action: ").lower()
+        user_input = input("\nChoose your action: ").lower()
         if user_input == "rock":
+            print("\nYou chose Rock", end=" |")
             return Action.Rock
         elif user_input == "paper":
+            print("\nYou chose Paper", end=" |")
             return Action.Paper
         elif user_input == "scissors":
+            print("\nYou chose Scissors", end=" |")
             return Action.Scissors
         else:
-            raise ValueError("Invalid action. Please enter rock, paper, or scissors.")
+            raise ValueError("\nInvalid action. Please enter rock, paper, or scissors.")
     except ValueError as e:
         print(e)
         return get_player_action()
     
 def get_computer_action():
     choice = random.choice(list(Action))
+    print(" Computer chose " + choice.name)
     return choice
     

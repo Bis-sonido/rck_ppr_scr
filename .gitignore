@@ -1,10 +1,4 @@
-# Python-generated files
+images/
 __pycache__/
-*.py[oc]
-build/
-dist/
-wheels/
-*.egg-info
-
-# Virtual environments
-.venv
+test_game.py
+test_game_2.py

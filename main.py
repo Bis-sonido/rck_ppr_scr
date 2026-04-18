@@ -1,25 +1,32 @@
-import pygame
-import sys
-from actions import Action
+import time
+from actions.actions import get_player_action, get_computer_action, winning_comb
+from player.player import Player, ComputerPlayer, do_damage
+from intro.info import info, continue_to_game
 
 #Work in Progress
 def main():
-    print("Rock-Paper-Scissors Game")
-    pygame.init()
-    screen = pygame.display.set_mode((640, 480))
-    pygame.display.set_caption("Rock-Paper-Scissors Game")
-    clock = pygame.time.Clock()
+    info()
+    continue_to_game()
+    time.sleep(1.5)
     running = True
-    dt = 0
-    
     while running:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                running = False
-        screen.fill((0, 0, 0))
-        pygame.display.flip()
-        dt = clock.tick(60) / 1000.0
-    pygame.quit()
+        player = Player("Player")
+        computer = ComputerPlayer("Computer")
+        while player.current_hp > 0 and computer.current_hp > 0:
+            player.action = get_player_action()
+            computer.action = get_computer_action()
+            
+            do_damage(player, computer)
+            time.sleep(1.5)
 
+            if player.current_hp <= 0:
+                print(f"{computer.name} wins the game!")
+            elif computer.current_hp <= 0:
+                print(f"{player.name} wins the game!")
+        play_again = input("Do you want to play again? (yes/no): ").lower()
+        if play_again != "yes":
+            print("Thanks for playing!")
+            running = False
+            
 if __name__ == "__main__":
     main()
