@@ -1,11 +1,25 @@
 <!--- testing that this comment isn't showing --->
 # Rock, Paper, Scissors Showdown
-This is a simple rock, paper, and scissors game, with a little twist. Players have a health bar. Each time you win a round, you damage the opponent. To spice up the game, winning multiple rounds in a row, provides a multiplier increase the damge you deal.
+This is a simple rock, paper, and scissors game, with a little twist. Players have a health bar. Each time you win a round, you damage the opponent. To spice up the game, winning multiple rounds in a row provides a multiplier increasing the damage you deal.
 
 ![Terminal showing the game in action.](/images/Gameplay.jpg)
 
 # How Does It Work
-The player and the computer are their own class with multiple parameters. The important parameters like **damage** and **hp** are defined in my **constants** file.
+The player and the computer are their own class with multiple parameters. 
+
+```python
+class Player():
+    def __init__(self, name, max_hp=MAX_HP, damage=DAMAGE, wins_in_row=0):
+        self.name = name
+        self.current_hp = max_hp
+        self.max_hp = max_hp
+        self.damage = damage
+        self.action = None
+        self.wins_in_row = wins_in_row
+
+#the computer inherits some parameters from the Player class
+```
+Parameters like **damage** and **hp** are defined in my **constants** file.
 
 ```python
 DAMAGE = 10
@@ -48,6 +62,17 @@ elif winning_comb[player.action] == opponent.action:
         opponent.get_hit(final_damage)
         print(f"{player.name} HP: {player.show_curr_hp()} | {opponent.name} HP: {opponent.show_curr_hp()}")
 # the "else" statement follows after
+```
+if a tie happens, the multiplier is lost and your wins in a row resets to 0.
+
+```python
+if player.action == opponent.action:
+        print("It's a tie! No damage dealt.")
+        time.sleep(1.5)
+        print(f"{player.name} HP: {player.show_curr_hp()} | {opponent.name} HP: {opponent.show_curr_hp()}")
+        time.sleep(1.5)
+        player.wins_in_row = 0
+        opponent.wins_in_row = 0
 ```
 
 # How To Start

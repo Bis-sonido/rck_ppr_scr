@@ -1,5 +1,6 @@
 import random
 from enum import Enum
+import time
 
 class Action(Enum):
     Rock = 1
@@ -15,7 +16,7 @@ winning_comb = {
 def get_player_action():
     try:
         choices = [f"- {action.name}" for action in Action]
-        print("\nChoose your action:\n")
+        print("\nActions:\n")
         for choice in choices:
             print(choice)
         user_input = input("\nChoose your action: ").lower()
@@ -32,6 +33,7 @@ def get_player_action():
             raise ValueError("\nInvalid action. Please enter rock, paper, or scissors.")
     except ValueError as e:
         print(e)
+        time.sleep(1.5)
         return get_player_action()
     
 def get_computer_action():
